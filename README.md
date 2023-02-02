@@ -1,16 +1,14 @@
 # video_stream
 
-A new Flutter project.
+A new Flutter project for navigate video streams when app is totally killed.
 
-## Getting Started
+## Infomations
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-Create native java class for detect the notifications when app is totaly killed.
+-Then added to androidManifest.xml
+-Firebase massaging added to project
+-added firebase and firebase json
+-create firebase project
+-Get fcm registration token
+-Handle the states of the push notification oin flutter app
+-When app is totaly killed resived push notification with video stram then navigate and open the app

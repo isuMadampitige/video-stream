@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:video_stream/View/notificationScreen.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -22,7 +23,22 @@ class _HomePageScreenState extends State<HomePageScreen> {
     });
   }
 
+  Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+    print("Handling a background message");
+  }
+
   _initFirebaseMessaging() async {
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      print("recieved msggg");
+      if (message != null) {
+        RemoteNotification? notification = message.notification;
+        AndroidNotification? android = message.notification?.android;
+        if (notification != null && android != null) {
+          //  TODO
+          //  Do any logic, for example dialog
+        }
+      }
+    });
     NotificationSettings settings = await messaging.requestPermission(
       alert: true,
       announcement: false,
@@ -44,10 +60,17 @@ class _HomePageScreenState extends State<HomePageScreen> {
       if (message != null) {
         body = message.notification!.body;
         title = message.notification!.title;
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HomePageScreen()));
+        //Here we can navigate any screen of the app
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NotificationScreen(
+                      title: title,
+                      body: body,
+                    )));
       }
     });
+    // FirebaseMessaging?.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   }
 
   @override
